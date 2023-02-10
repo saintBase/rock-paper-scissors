@@ -28,20 +28,35 @@ function playRound(playerSelection, computerSelection) {
       result = "You Win! " + playerSelection + " beats " + computerSelection;
     else result = "Draw!";
   }
-  console.log(playerSelection + " " + computerSelection);
+  else {
+    console.log("You have entered an invalid input!")
+  }
+  console.log("Player: " + playerSelection + " Computer : " + computerSelection);
   return result;
 }
 
 function game(){
-    let counter = 0;
-    for(let i=0; i < 5; i++){
-        let game = playRound();
+    let player = 0;
+    let computer = 0;
+    for(let i= 0; i < 5; i++){
+        let playerSelection = prompt("Rock, Paper or Scissors?");
+        let computerSelection = getComputerChoice();
+        let game = playRound(playerSelection, computerSelection);
         if (game.includes('Win'))
-            counter++;
+            player++;
+        else if(game.includes('Lose'))
+            computer++;
     }
+    console.log("Computer: " + computer + ", Player: " + player);
+    if(player > computer)
+        return "You Win!"
+    else if(computer > player)
+        return "You Lose!"
+    else
+        return "No Winners, no Losers!"
 }
 
-const playerSelection = prompt("Rock, Paper or Scissors?");
-const computerSelection = getComputerChoice();
 
-console.log(playRound(playerSelection, computerSelection));
+
+//console.log(playRound(playerSelection, computerSelection));
+console.log(game());
